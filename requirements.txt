@@ -9,3 +9,4 @@ tensorflow==2.16.1
 Pillow==10.3.0
 reportlab==4.2.0
 openpyxl==3.0.10
+kaleido==0.2.1
