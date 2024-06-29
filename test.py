@@ -174,8 +174,12 @@ if uploaded_file:
             "Random Forest": train_random_forest(data['y'])
         }
         st.markdown("### Model Training Results")
-        for model_name, (model, rmse) in models.items():
-            st.markdown(f"**{model_name} RMSE:** {rmse:.2f}")
+        for model_name, result in models.items():
+            if result:
+                model, rmse = result
+                st.markdown(f"**{model_name} RMSE:** {rmse:.2f}")
+            else:
+                st.markdown(f"**{model_name} failed to train**")
 
         best_model_name, best_model_info = min(models.items(), key=lambda x: x[1][1])
         st.markdown(f"### Best Performing Model: **{best_model_name}** with RMSE: **{best_model_info[1]:.2f}**")
