@@ -51,7 +51,11 @@ def train_lstm(data, n_steps):
     ])
     model.compile(optimizer=Adam(learning_rate=0.01), loss='mse')
     model.fit(X, y, epochs=50, verbose=0)
-    predictions = model.predict(X)
+    try:
+        predictions = model.predict(X)
+    except Exception as e:
+        st.error(f"Error during prediction: {str(e)}")
+        return None
     rmse = np.sqrt(mean_squared_error(y, predictions))
     return model, rmse
 
